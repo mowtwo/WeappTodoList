@@ -1,0 +1,25 @@
+<view class="create">
+    <view class="create__title">
+        <input value="{{title}}" bindinput="titleInputHandle" type="text" placeholder="请输入事项标题" maxlength="20" />
+    </view>
+    <view class="create__content">
+        <textarea value="{{content}}" class="create__content-area" bindinput="contentInputHandle" placeholder="请输入事项内容" rows="4"
+            maxlength="200" />
+        <view class="create__content-showCount">
+            当前字数：{{content.length}}/200
+        </view>
+    </view>
+    <view class="create__picture">
+        <view wx:if="{{picturePreviewList.length<maxChooseImageCount}}"
+            class="create__picture-block create__picture-choose" bindtap="chooseImageHandle">
+            添加图片
+        </view>
+        <view data-index="{{index}}" data-src="{{item}}" bindlongpress="pressRemoveHandle" bindtap="previewHandle" wx:for="{{picturePreviewList}}" wx:key="index" class="create__picture-block create__picture-preview">
+            <image src="{{item}}"></image>
+        </view>
+    </view>
+    <view class="create__save">
+        <button bindtap="saveHandle" disabled="{{title.length<=0||content.length<=0}}" class="create__save-button"
+            type="primary">保存</button>
+    </view>
+</view>

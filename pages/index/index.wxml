@@ -1,0 +1,19 @@
+<view class="title">
+  提醒事项
+</view>
+<view class="todo">
+  <scroll-view class="todo__scroll" scroll-y="true" wx:if="{{todoList.length>0}}">
+    <view class="todo__item" wx:for="{{todoList}}" wx:key="index">
+      <checkbox value="{{item.title}}" checked="{{item.finished}}" data-index="{{index}}"
+        data-checked="{{item.finished}}" bindtap="checkedHandle" />
+      <view data-index="{{index}}" bindtap="editHandle" class="todo__content {{item.finished?'todo__content-finished':''}}">{{item.title}}</view>
+      <view class="todo__remove" data-index="{{index}}" bindtap="removeHandle">删除</view>
+    </view>
+  </scroll-view>
+  <view class="todo__empty" wx:else>
+    暂无提醒事项
+  </view>
+</view>
+<view class="create">
+  <button type="primary" class="create__button" bindtap="toCreate">新建事项</button>
+</view>
